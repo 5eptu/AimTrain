@@ -8,15 +8,19 @@
 </head>
 <body>
 
-    <div class="container">
-        <h1>Aim Trainer</h1>
-        <button id="start-game">Start Game</button>
-        <div id="target-area" class="target-area"></div>
+    <!-- Homepage with Start Button -->
+    <div id="homepage" class="homepage-container">
+        <h1 class="title">Advanced Aim Trainer</h1>
+        <div class="start-btn-container">
+            <button id="start-game" class="start-btn">Start Game</button>
+        </div>
     </div>
 
-    <!-- Audio Elements -->
-    <audio id="click-sound" src="assets/sounds/wii-start-click-page-shift-sound.mp3"></audio>
-    <audio id="start-sound" src="assets/sounds/warn3.mp3"></audio>
+    <!-- Game Section (Hidden Initially) -->
+    <div id="game-container" class="game-container">
+        <h2>Click the Target</h2>
+        <div id="target" class="target"></div>
+    </div>
 
     <script src="scripts.js"></script>
 </body>
