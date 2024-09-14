@@ -1,44 +1,35 @@
-document.getElementById('start-game').addEventListener('click', startGame);
+// Audio Elements
+const clickSound = new Audio('assets/sounds/wii-start-click-page-shift-sound.mp3');
+const startSound = new Audio('assets/sounds/warn3.mp3');
 
-// Game state variable
-let gameActive = false;
+// DOM Elements
+const startBtn = document.getElementById('start-game');
+const homepage = document.getElementById('homepage');
+const gameContainer = document.getElementById('game-container');
+const target = document.getElementById('target');
 
-// Function to start the game
+// Function to Start the Game
 function startGame() {
-    if (!gameActive) {
-        gameActive = true;
+    startSound.play();  // Play the start sound
 
-        // Play the start sound (warn3.mp3)
-        document.getElementById('start-sound').play();
-
-        // Create targets
-        createTargets();
-    }
+    homepage.style.display = 'none';  // Hide homepage
+    gameContainer.style.display = 'flex';  // Show game container
 }
 
-// Function to create targets in the target area
-function createTargets() {
-    const targetArea = document.getElementById('target-area');
-    targetArea.innerHTML = ''; // Clear any existing targets
-
-    // Create 5 random targets
-    for (let i = 0; i < 5; i++) {
-        const target = document.createElement('div');
-        target.classList.add('target');
-        target.style.left = `${Math.random() * 90}%`; // Position target randomly
-        target.style.top = `${Math.random() * 90}%`;
-
-        // Add click event to each target
-        target.addEventListener('click', hitTarget);
-        targetArea.appendChild(target);
-    }
+// Function for Target Click
+function clickTarget() {
+    clickSound.play();  // Play click sound when target is clicked
+    moveTarget();  // Move target to new position
 }
 
-// Function to handle target clicks
-function hitTarget(event) {
-    // Remove clicked target
-    event.target.remove();
-
-    // Play the click sound (wii-start-click-page-shift-sound.mp3)
-    document.getElementById('click-sound').play();
+// Function to Randomly Move Target
+function moveTarget() {
+    const randomX = Math.floor(Math.random() * 80);  // Get random position within 80% of viewport
+    const randomY = Math.floor(Math.random() * 80);
+    target.style.top = randomY + '%';
+    target.style.left = randomX + '%';
 }
+
+// Event Listeners
+startBtn.addEventListener('click', startGame);  // Start game when button is clicked
+target.addEventListener('click', clickTarget);  // Play sound and move target when clicked
